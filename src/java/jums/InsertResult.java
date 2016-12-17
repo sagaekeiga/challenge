@@ -36,24 +36,30 @@ public class InsertResult extends HttpServlet {
         
         try{
             //ユーザー情報に対応したJavaBeansオブジェクトに格納していく
-            UserDataDTO userdata = new UserDataDTO(); //オブジェクトの初期化
+            UserDataDTO userdata = null;
+            userdata = new UserDataDTO(); //オブジェクトの初期化
             
-            userdata.setName((String)session.getAttribute("name"));
-            String year = (String)session.getAttribute("year");
-            String month = (String)session.getAttribute("month");
-            String day = (String)session.getAttribute("day");
-            String birthday = year + "年" + month + "月" + day + "日";
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日");
-            Date formatDate = sdf.parse(birthday); 
+            request.setCharacterEncoding("UTF-8");
+            
+            String name = request.getParameter("name");
+            String birthday = request.getParameter("birthday");
+            String type = request.getParameter("type");
+            String tell = request.getParameter("tell");
+            String comment = request.getParameter("comment");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy'年'MM'月'dd'日'");
+            Date formatDate = sdf.parse(birthday);
+            userdata.setName(name);
+            userdata.setType(Integer.parseInt(type));
+            userdata.setTell(tell);
+            userdata.setComment(comment);
             userdata.setBirthday(formatDate);
-            System.out.print(formatDate);
-            userdata.setType(Integer.parseInt((String)session.getAttribute("type")));
-            userdata.setTell((String)session.getAttribute("tell"));
-            userdata.setComment((String)session.getAttribute("comment"));
             
+         
             //DBへデータの挿入
             UserDataDAO .getInstance().insert(userdata);
 
+            request.setAttribute("birthday", birthday);
+            request.setAttribute("userdata", userdata); 
             request.getRequestDispatcher("/insertresult.jsp").forward(request, response);
         }catch(Exception e){
             //データ挿入に失敗したらエラーページにエラー文を渡して表示

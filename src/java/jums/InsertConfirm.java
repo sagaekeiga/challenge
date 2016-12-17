@@ -27,14 +27,13 @@ public class InsertConfirm extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try{
-            HttpSession session = request.getSession();//セッションスタート
             request.setCharacterEncoding("UTF-8");//セッションに格納する文字コードをUTF-8に変更
             String accesschk = request.getParameter("ac");
-            if(accesschk ==null || (Integer)session.getAttribute("ac")!=Integer.parseInt(accesschk)){
-                throw new Exception("不正なアクセスです");
-            }
-  
+
+            HttpSession session = request.getSession();
+
             UserDataBeans userdata = null; //オブジェクトの初期化
+            userdata = new UserDataBeans();
             
             //フォームからの入力を取得
             String name = request.getParameter("name");
@@ -44,20 +43,30 @@ public class InsertConfirm extends HttpServlet {
             String type = request.getParameter("type");
             String tell = request.getParameter("tell");
             String comment = request.getParameter("comment");
-
-            //セッションに格納
-            userdata = (UserDataBeans)request.getAttribute("userdata"); //添田さんに相談したときにはなかったコードです。
-            userdata = new UserDataBeans(); //添田さんに相談したときにはなかったコードです。
-            request.setAttribute("userdata", userdata); //添田さんに相談したときにはなかったコードです。
-            userdata.setClientName(name);//UserDataBeansのnameに取得したnameを格納。
-            session.setAttribute("year", year);
-            session.setAttribute("month",month);
-            session.setAttribute("day", day);
-            session.setAttribute("type", type);
-            session.setAttribute("tell", tell);
-            session.setAttribute("comment", comment);
-            System.out.println("Session updated!!");
             
+           //生年月日
+            session.setAttribute("year", year);
+            session.setAttribute("month", month);
+            session.setAttribute("day", day);
+            
+            //年、月、日が揃っていなければ"年" + "月" + "日"として処理
+            if(year != null && month != null && day != null){
+            String birthday = year + "年" + month + "月" + day + "日";
+            userdata.setBirthday(birthday);
+            }else{
+            String birthday =  "年" + "月" +"日";
+            userdata.setBirthday(birthday);
+            }
+            
+
+            //Beansに取得データを格納(Birthday以外)
+            userdata.setName(name);
+            userdata.setType(type);
+            userdata.setTell(tell);
+            userdata.setComment(comment);
+            
+            
+            request.setAttribute("userdata", userdata); 
             request.getRequestDispatcher("/insertconfirm.jsp").forward(request, response);
         }catch(Exception e){
             request.setAttribute("error", e.getMessage());

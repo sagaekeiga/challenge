@@ -16,9 +16,9 @@ import java.util.Date;
 public class UserDataBeans {
     private int clientID;
     private String name;
-    private Date birthday;
+    private String birthday;
     private String tell;
-    private int type;
+    private String type;
     private String comment;
     private Timestamp newDate;
     
@@ -48,10 +48,10 @@ public class UserDataBeans {
         this.name = name;
     }
     
-    public Date getBirthday(){
+    public String getBirthday(){
         return birthday;
     }
-    public void setBirthday(Date birthday){
+    public void setBirthday(String birthday){
         this.birthday = birthday;
     }
     
@@ -62,10 +62,10 @@ public class UserDataBeans {
         this.tell = tell;
     }
     
-    public int getType(){
+    public String getType(){
         return type;
     }
-    public void setType(int type){
+    public void setType(String type){
         this.type = type;
     }
     

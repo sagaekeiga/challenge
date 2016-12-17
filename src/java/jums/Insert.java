@@ -27,7 +27,7 @@ sts for both HTTP <code>GET</code> and <code>POST</code>
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         session.setAttribute("ac", (int) (Math.random() * 1000));
-        request.getRequestDispatcher("/insert.jsp").forward(request, response);   
+        request.getRequestDispatcher("/insert.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

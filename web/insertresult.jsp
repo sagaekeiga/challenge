@@ -11,17 +11,18 @@
         <title>JUMS登録結果画面</title>
     </head>
     <body>
+      <jsp:useBean id="userdata"  scope="request" class="jums.UserDataDTO"/>
+        <% if( userdata.getName() != null && request.getAttribute("birthday") != "年"+"月"+"日" &&  userdata.getType() != 0 
+         && userdata.getTell() != null && userdata.getComment() != null ){ %><!-- 直リンク防止  -->
         <h1>登録結果</h1><br>
-    <% if(!hs.getAttribute("name").equals("")){ %>
-        名前:<%= hs.getAttribute("name")%><br>
-        生年月日:<%= hs.getAttribute("year")+"年"+hs.getAttribute("month")+"月"+hs.getAttribute("day")+"日"%><br>
-        種別:<%= hs.getAttribute("type")%><br>
-        電話番号:<%= hs.getAttribute("tell")%><br>
-        自己紹介:<%= hs.getAttribute("comment")%><br>
+         名前：<%= userdata.getName()%><br><br>
+         生年月日：<%= request.getAttribute("birthday") %><br><br>
+         種別： <%= userdata.getType()%><br><br>
+         電話番号： <%= userdata.getTell()%><br><br>
+        自己紹介：<%= userdata.getComment()%><br><br>
         以上の内容で登録しました。<br><br>
-    <% }else{ %>
-        <h1>入力が不完全です</h1>
-    <% } %>
+        <% } %>
+
         <%=JumsHelper.getInstance().home()%>
     </body>
 </html>

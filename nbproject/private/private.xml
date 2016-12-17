@@ -5,10 +5,11 @@
         <group>
             <file>file:/C:/Users/keiga/Documents/NetBeansProjects/JavaUserManagementSystem_ver1.0/web/insertconfirm.jsp</file>
             <file>file:/C:/Users/keiga/Documents/NetBeansProjects/JavaUserManagementSystem_ver1.0/src/java/jums/InsertConfirm.java</file>
+            <file>file:/C:/Users/keiga/Documents/NetBeansProjects/JavaUserManagementSystem_ver1.0/src/java/jums/Insert.java</file>
             <file>file:/C:/Users/keiga/Documents/NetBeansProjects/JavaUserManagementSystem_ver1.0/web/insert.jsp</file>
             <file>file:/C:/Users/keiga/Documents/NetBeansProjects/JavaUserManagementSystem_ver1.0/src/java/jums/InsertResult.java</file>
+            <file>file:/C:/Users/keiga/Documents/NetBeansProjects/JavaUserManagementSystem_ver1.0/src/java/jums/UserDataDAO.java</file>
             <file>file:/C:/Users/keiga/Documents/NetBeansProjects/JavaUserManagementSystem_ver1.0/web/insertresult.jsp</file>
-            <file>file:/C:/Users/keiga/Documents/NetBeansProjects/JavaUserManagementSystem_ver1.0/src/java/jums/UserDataBeans.java</file>
         </group>
     </open-files>
 </project-private>
